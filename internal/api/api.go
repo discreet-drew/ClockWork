@@ -1,17 +1,10 @@
-// Package api implements Clockwork's HTTP surface (a simplified take on
-// Phase 16 -- production concerns like auth, pagination, and versioning
-// are called out as TODOs rather than implemented, to keep this
-// buildable in one sitting; see the README's "what's deliberately not
-// here yet" section).
 package api
 
 import (
 	"encoding/json"
 	"net/http"
 	"time"
-
 	"github.com/google/uuid"
-
 	"clockwork/internal/job"
 	"clockwork/internal/store"
 )
@@ -44,10 +37,6 @@ type createJobRequest struct {
 	MaxAttempts    int             `json:"max_attempts,omitempty"`
 }
 
-// handleCreateJob: POST /jobs
-// TODO (Phase 16/17, not implemented here): request size limits, auth,
-// rate limiting, and stricter payload validation before this touches a
-// real network.
 func (s *Server) handleCreateJob(w http.ResponseWriter, r *http.Request) {
 	var req createJobRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -117,12 +106,6 @@ type taskRequest struct {
 	DependsOn []string        `json:"depends_on"`
 }
 
-// handleCreateWorkflow: POST /workflows
-// Submits a full DAG at once: every task is inserted up front (Phase 11),
-// and Store.Claim's dependency-gate query is what actually enforces
-// ordering -- there's no separate "workflow engine loop" walking the
-// graph. This keeps the DAG execution logic in one place (the SQL query)
-// instead of duplicating graph-walking logic in application code.
 func (s *Server) handleCreateWorkflow(w http.ResponseWriter, r *http.Request) {
 	var req createWorkflowRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
