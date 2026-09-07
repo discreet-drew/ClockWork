@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
 	"github.com/google/uuid"
 )
 
@@ -17,12 +18,13 @@ const (
 	StatusSuccess Status = "SUCCESS"
 	StatusFailed  Status = "FAILED"
 	StatusRetry   Status = "RETRY"
-	StatusDead    Status = "DEAD" 
+	StatusDead    Status = "DEAD"
+)
 
 var validTransitions = map[Status][]Status{
 	StatusCreated: {StatusQueued},
 	StatusQueued:  {StatusLeased},
-	StatusLeased:  {StatusRunning, StatusQueued}, 
+	StatusLeased:  {StatusRunning, StatusQueued},
 	StatusRunning: {StatusSuccess, StatusFailed},
 	StatusFailed:  {StatusRetry, StatusDead},
 	StatusRetry:   {StatusQueued},
@@ -39,10 +41,10 @@ func CanTransition(from, to Status) bool {
 
 type Job struct {
 	ID             uuid.UUID
-	WorkflowID     *uuid.UUID 
-	TaskName       string     
-	DependsOn      []string   
-	JobType        string     
+	WorkflowID     *uuid.UUID
+	TaskName       string
+	DependsOn      []string
+	JobType        string
 	Payload        json.RawMessage
 	Status         Status
 	RunAt          time.Time
