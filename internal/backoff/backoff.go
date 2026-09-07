@@ -15,7 +15,7 @@ func Exponential(base, max time.Duration) func(attempt int) time.Duration {
 		if d > float64(max) {
 			d = float64(max)
 		}
-		jitterFactor := 0.8 + rand.Float64()*0.4 
+		jitterFactor := 0.8 + rand.Float64()*0.4
 		return time.Duration(d * jitterFactor)
 	}
 }
