@@ -30,7 +30,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-
   worker:
     build:
       context: .
@@ -57,6 +56,6 @@ services:
       postgres:
         condition: service_healthy
     deploy:
-      replicas: 
+      replicas: 1
 volumes:
   pgdata:
