@@ -1,6 +1,6 @@
-# Clockwork
+# ClockWork
 
-Clockwork is a distributed job scheduler and workflow engine built in Go and backed by PostgreSQL.
+ClockWork is a distributed job scheduler and workflow engine built in Go and backed by PostgreSQL.
 It allows applications to submit jobs, schedule recurring tasks, execute work using a pool of workers, retry failed jobs, recover jobs from worker failures, and manage tasks with dependencies.
 
 ## Features
@@ -27,7 +27,7 @@ It allows applications to submit jobs, schedule recurring tasks, execute work us
 
 
 ## Project Structure
-Clockwork/ \
+ClockWork/ \
 │ \
 ├── cmd/ \
 │   ├── api/\
@@ -47,7 +47,7 @@ Clockwork/ \
 ├── docker-compose.yml \
 └── go.mod 
 
-## Running Clockwork
+## Running ClockWork
 Requirements 
 - Go 1.22+ 
 - Docker Desktop 
@@ -64,18 +64,18 @@ Start PostgreSQL:
 
 `docker run --name cw-postgres \` \
  ` -e POSTGRES_PASSWORD=devpass \` \
-  `-e POSTGRES_DB=clockwork \` \
+  `-e POSTGRES_DB=Clockwork \` \
   `-p 5432:5432 \` \
   `-d postgres:16` 
 
 Run the database migration: 
 
-`psql "postgres://postgres:devpass@localhost:5432/clockwork?sslmode=disable" \` \
+`psql "postgres://postgres:devpass@localhost:5432/Clockwork?sslmode=disable" \` \
   `-f migrations/001_schema.sql`
 
 Set the database URL: 
 
-`export DATABASE_URL="postgres://postgres:devpass@localhost:5432/clockwork?sslmode=disable"`
+`export DATABASE_URL="postgres://postgres:devpass@localhost:5432/Clockwork?sslmode=disable"`
 
 Start the services: 
 
@@ -110,7 +110,7 @@ Run database-related tests:
 
 ## What I Learned
 
-Building Clockwork gave me practical experience with several backend and distributed-systems concepts:
+Building ClockWork gave me practical experience with several backend and distributed-systems concepts:
 
 * Designing a durable job queue using PostgreSQL.
 * Managing concurrent workers with database row locking.
@@ -126,7 +126,7 @@ Building Clockwork gave me practical experience with several backend and distrib
 
 Current Scope
 
-> Clockwork is primarily a backend and distributed-systems learning project.
+> ClockWork is primarily a backend and distributed-systems learning project.
 
 Current limitations include:
 
