@@ -53,12 +53,12 @@ Requirements
 - Docker Desktop 
 - PostgreSQL 
 
-Run with Docker \
-`docker compose up --build` \
+Run with Docker 
+`docker compose up --build` 
 
 This starts PostgreSQL, the API, workers, and scheduler instances. \
 
-Run manually \
+Run manually 
 
 Start PostgreSQL: 
 
