@@ -56,7 +56,7 @@ Requirements
 Run with Docker 
 `docker compose up --build` 
 
-This starts PostgreSQL, the API, workers, and scheduler instances. \
+This starts PostgreSQL, the API, workers, and scheduler instances. 
 
 Run manually 
 
